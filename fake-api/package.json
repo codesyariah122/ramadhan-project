@@ -10,10 +10,8 @@
     "start": "nodemon --experimental-json-modules server.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "fs": "^0.0.1-security",
     "global": "^4.4.0",
     "json-server": "^0.17.0",
     "nodemon": "^2.0.15",

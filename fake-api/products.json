@@ -16,14 +16,6 @@
                 "photo": "/images/products/70s-white.jpeg",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "price": 2999999
-            },
-            {
-                "id": 3,
-                "name": "testing product 2",
-                "permalink": "testing-product-2",
-                "photo": "",
-                "description": "lorem ipsum aja",
-                "price": 399999
             }
         ]
     }
