@@ -50,10 +50,8 @@ server.get('/products/:permalink', (req, res) => {
 })
 
 server.post('/products/add', (req, res) => {
-  const db = router.db
   const postData = req.body
   const addData = JSON.stringify(postData)
-  const products = JSON.parse(productToWrite).products.data
 
   fs.readFile('./products.json', 'utf-8', (err, data) => {
     const databases = JSON.parse(data)
