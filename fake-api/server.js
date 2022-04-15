@@ -32,37 +32,47 @@ server.post('/product/add', (req, res)=>{
 
   fs.readFile('./products.json', 'utf-8', (err, data) => {
     const databases = JSON.parse(data)
+    const products = databases.products.data.map(d => d)
+    const find = products.find(d =>  d.name === postData.name)
 
     if(err){
-      console.log(`Error reading file from databases : ${err}`)
+      console.log(`Error add data : ${err}`)
+      res.json({
+        message: `Error add data : ${err}`
+      }).status(404)
     }else{
+      if(find){
+        console.log(`${postData.name}, is already in databases`)
+        res.status(401).json({
+          message: `${postData.name}, is already in databases`
+        })
+      }else{
+        console.log('Return push data')
+        const newData = JSON.parse(addData)
 
-      const newData = JSON.parse(addData)
+        databases.products.data.push({
+          id: parseInt(newData.id),
+          name: newData.name,
+          permalink: newData.permalink,
+          photo: newData.photo,
+          description: newData.description,
+          price: parseInt(newData.price)
+        })
 
-      databases.products.data.push({
-        id: parseInt(newData.id),
-        name: newData.name,
-        permalink: newData.permalink,
-        photo: newData.photo,
-        description: newData.description,
-        price: parseInt(newData.price)
-      })
-
-      fs.writeFile('./products.json', JSON.stringify(databases, null, 4), (err) => {
-        if(err){
-          console.log(`Error writing data : ${err}`)
-        }
-      })
-
+        fs.writeFile('./products.json', JSON.stringify(databases, null, 4), (err) => {
+          if(err){
+            console.log(`Error writing data : ${err}`)
+          }
+        })
+        res.json({
+          message: `${postData.name} has been added to database products`,
+          data: postData
+        }).status(200)
+      }
     }
 
   })
 
-  res.json({
-    message: 'New Product Added',
-    data: postData
-  })
-  
 })
 
 server.get('/', (req, res) => {

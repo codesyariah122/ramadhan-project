@@ -40,6 +40,46 @@
                 "photo": "",
                 "description": "lorem ipsum aja",
                 "price": 5999999
+            },
+            {
+                "id": 6,
+                "name": "testing product 6",
+                "permalink": "testing-product-6",
+                "photo": "",
+                "description": "lorem ipsum aja",
+                "price": 6999999
+            },
+            {
+                "id": 7,
+                "name": "testing product 7",
+                "permalink": "testing-product-7",
+                "photo": "",
+                "description": "lorem ipsum aja",
+                "price": 7999999
+            },
+            {
+                "id": 8,
+                "name": "testing product 8",
+                "permalink": "testing-product-8",
+                "photo": "",
+                "description": "lorem ipsum aja",
+                "price": 8999999
+            },
+            {
+                "id": 9,
+                "name": "testing product 9",
+                "permalink": "testing-product-9",
+                "photo": "",
+                "description": "lorem ipsum aja",
+                "price": 9999999
+            },
+            {
+                "id": 10,
+                "name": "testing product 10",
+                "permalink": "testing-product-10",
+                "photo": "",
+                "description": "lorem ipsum aja",
+                "price": 9999999
             }
         ]
     }
