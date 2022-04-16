@@ -26,55 +26,6 @@ server.use(bodyParser.urlencoded({
 
 server.use('/public', express.static(path.join(__dirname, 'public')))
 
-server.post('/product/add', (req, res)=>{
-  const postData = req.body
-  const addData = JSON.stringify(postData)
-
-  fs.readFile('./products.json', 'utf-8', (err, data) => {
-    const databases = JSON.parse(data)
-    const products = databases.products.data.map(d => d)
-    const find = products.find(d =>  d.name === postData.name)
-
-    if(err){
-      console.log(`Error add data : ${err}`)
-      res.json({
-        message: `Error add data : ${err}`
-      }).status(404)
-    }else{
-      if(find){
-        console.log(`${postData.name}, is already in databases`)
-        res.status(401).json({
-          message: `${postData.name}, is already in databases`
-        })
-      }else{
-        console.log('Return push data')
-        const newData = JSON.parse(addData)
-
-        databases.products.data.push({
-          id: parseInt(newData.id),
-          name: newData.name,
-          permalink: newData.permalink,
-          photo: newData.photo,
-          description: newData.description,
-          price: parseInt(newData.price)
-        })
-
-        fs.writeFile('./products.json', JSON.stringify(databases, null, 4), (err) => {
-          if(err){
-            console.log(`Error writing data : ${err}`)
-          }
-        })
-        res.json({
-          message: `${postData.name} has been added to database products`,
-          data: postData
-        }).status(200)
-      }
-    }
-
-  })
-
-})
-
 server.get('/', (req, res) => {
   res.json({
     message: 'Welcome To JSON SERVER',
@@ -95,6 +46,90 @@ server.get('/products/:permalink', (req, res) => {
     data: product.find(d => d.permalink == permalink)
   })
 })
+
+server.post('/product/add', (req, res)=>{
+  const postData = req.body
+  const addData = JSON.stringify(postData)
+  const newData = JSON.parse(addData)
+
+  fs.readFile('./products.json', 'utf-8', (err, data) => {
+    const databases = JSON.parse(data)
+    const products = databases.products.data.map(d => d)
+    const find = products.find(d =>  d.name === postData.name)
+
+    if(err){
+      console.log(`Error add data : ${err}`)
+      res.json({
+        message: `Error add data : ${err}`
+      }).status(404)
+    }else{
+      if(find){
+        res.status(401).json({
+          message: `${postData.name}, is already in databases`
+        })
+      }else{
+        databases.products.data.push({
+          id: parseInt(newData.id),
+          name: newData.name,
+          permalink: newData.permalink,
+          photo: newData.photo,
+          description: newData.description,
+          price: parseInt(newData.price)
+        })
+
+        fs.writeFile('./products.json', JSON.stringify(databases, null, 4), (err) => {
+          if(err){
+            console.log(`Error writing data : ${err}`)
+          }
+        })
+        res.json({
+          message: `${postData.name} has been added to database products`,
+          data: postData
+        }).status(200)
+      }
+    }
+  })
+})
+
+server.put('/product/update/:id', (req, res) => {
+  let id = JSON.parse(parseInt(req.params.id))
+  fs.readFile('./products.json', 'utf-8', (err, data) => {
+    const databases = JSON.parse(data)
+    const products = databases.products.data.map(d => d)
+    const find = products.find(d =>  d.id === id)
+
+    if(err){
+      console.log(`Error add data : ${err}`)
+      res.json({
+        message: `Error add data : ${err}`
+      }).status(404)
+    }else{
+      if(find){
+        const updateData = JSON.stringify(req.body)
+        const newData = JSON.parse(updateData)
+        find.id = id
+        find.name = newData.name 
+        find.permalink = newData.permalink
+        find.photo = newData.photo
+        find.description = newData.description
+        find.price = newData.price
+
+        fs.writeFile('./products.json', JSON.stringify(databases, null, 4), (err) => {
+          if(err){
+            console.log(`Error writing data : ${err}`)
+          }
+        })
+        res.json({
+          message: `Product with ID : ${id} has been updated to database products`,
+          data: newData
+        }).status(200)
+      }else{
+        console.log("data tidak ditemukan")
+      }
+    }
+  })
+})
+
 
 server.use(router)
 

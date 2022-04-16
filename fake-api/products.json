@@ -19,19 +19,19 @@
             },
             {
                 "id": 3,
-                "name": "testing product 3",
-                "permalink": "testing-product-3",
+                "name": "update jadi product tiga",
+                "permalink": "update-jadi-product-tiga",
                 "photo": "",
                 "description": "lorem ipsum aja",
-                "price": 3999999
+                "price": "3999999"
             },
             {
                 "id": 4,
-                "name": "testing product 4",
-                "permalink": "testing-product-4",
+                "name": "update jadi product empat",
+                "permalink": "update-jadi-product-empat",
                 "photo": "",
                 "description": "lorem ipsum aja",
-                "price": 4999999
+                "price": "3999999"
             },
             {
                 "id": 5,
@@ -39,7 +39,7 @@
                 "permalink": "testing-product-5",
                 "photo": "",
                 "description": "lorem ipsum aja",
-                "price": 5999999
+                "price": 3999999
             },
             {
                 "id": 6,
@@ -47,39 +47,7 @@
                 "permalink": "testing-product-6",
                 "photo": "",
                 "description": "lorem ipsum aja",
-                "price": 6999999
-            },
-            {
-                "id": 7,
-                "name": "testing product 7",
-                "permalink": "testing-product-7",
-                "photo": "",
-                "description": "lorem ipsum aja",
-                "price": 7999999
-            },
-            {
-                "id": 8,
-                "name": "testing product 8",
-                "permalink": "testing-product-8",
-                "photo": "",
-                "description": "lorem ipsum aja",
-                "price": 8999999
-            },
-            {
-                "id": 9,
-                "name": "testing product 9",
-                "permalink": "testing-product-9",
-                "photo": "",
-                "description": "lorem ipsum aja",
-                "price": 9999999
-            },
-            {
-                "id": 10,
-                "name": "testing product 10",
-                "permalink": "testing-product-10",
-                "photo": "",
-                "description": "lorem ipsum aja",
-                "price": 9999999
+                "price": 3999999
             }
         ]
     }
